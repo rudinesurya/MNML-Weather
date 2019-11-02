@@ -1,5 +1,6 @@
-package com.cookiesmile.mnml_weather.data;
+package com.cookiesmile.mnml_weather.data.utils;
 
+import com.cookiesmile.mnml_weather.data.AutoValueMoshi_AdapterFactory;
 import com.ryanharter.auto.value.moshi.MoshiAdapterFactory;
 import com.squareup.moshi.JsonAdapter;
 

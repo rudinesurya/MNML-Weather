@@ -1,11 +1,11 @@
-package com.cookiesmile.mnml_weather.model.current;
+package com.cookiesmile.mnml_weather.data.api.response.current;
 
-import com.cookiesmile.mnml_weather.model.current.helper.Clouds;
-import com.cookiesmile.mnml_weather.model.current.helper.Coord;
-import com.cookiesmile.mnml_weather.model.current.helper.Main;
-import com.cookiesmile.mnml_weather.model.current.helper.Sys;
-import com.cookiesmile.mnml_weather.model.current.helper.Weather;
-import com.cookiesmile.mnml_weather.model.current.helper.Wind;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Clouds;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Coord;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Main;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Sys;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Weather;
+import com.cookiesmile.mnml_weather.data.api.response.current.inner.Wind;
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
