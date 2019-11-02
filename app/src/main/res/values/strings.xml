@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">MNML-Weather</string>
+  <string name="api_error_fetch_weather">Error fetching weather data</string>
 </resources>
