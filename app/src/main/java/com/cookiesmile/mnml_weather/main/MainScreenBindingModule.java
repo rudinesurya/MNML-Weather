@@ -13,7 +13,7 @@ import dagger.multibindings.IntoMap;
 @Module(subcomponents = {
     CurrentWeatherComponent.class,
 })
-public abstract class MainScreenBindingModule {
+abstract class MainScreenBindingModule {
 
   @Binds
   @IntoMap

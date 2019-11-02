@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ApplicationModule {
+class ApplicationModule {
 
   private final Application application;
 
