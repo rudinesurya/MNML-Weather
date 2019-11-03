@@ -13,5 +13,5 @@ public abstract class Clouds {
   }
 
   @Json(name = "all")
-  public abstract long all();
+  public abstract double all();
 }

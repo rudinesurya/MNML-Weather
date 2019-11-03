@@ -1,5 +1,7 @@
 package com.cookiesmile.mnml_weather.data.api.response.forecast.inner;
 
+import androidx.annotation.Nullable;
+
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
@@ -30,6 +32,7 @@ public abstract class ListItem {
   public abstract Wind wind();
 
   @Json(name = "rain")
+  @Nullable
   public abstract Rain rain();
 
   @Json(name = "sys")
