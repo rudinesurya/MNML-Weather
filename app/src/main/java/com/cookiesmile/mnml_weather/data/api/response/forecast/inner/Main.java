@@ -22,17 +22,17 @@ public abstract class Main {
   public abstract double tempMax();
 
   @Json(name = "pressure")
-  public abstract long pressure();
+  public abstract double pressure();
 
   @Json(name = "sea_level")
-  public abstract long seaLevel();
+  public abstract double seaLevel();
 
   @Json(name = "grnd_level")
-  public abstract long grndLevel();
+  public abstract double grndLevel();
 
   @Json(name = "humidity")
-  public abstract long humidity();
+  public abstract double humidity();
 
   @Json(name = "temp_kf")
-  public abstract long tempKf();
+  public abstract double tempKf();
 }

@@ -16,5 +16,5 @@ public abstract class Wind {
   public abstract double speed();
 
   @Json(name = "deg")
-  public abstract long deg();
+  public abstract double deg();
 }

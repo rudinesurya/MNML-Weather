@@ -19,9 +19,6 @@ public abstract class ForecastWeatherResponse {
   @Json(name = "cod")
   public abstract String cod();
 
-  @Json(name = "message")
-  public abstract long message();
-
   @Json(name = "cnt")
   public abstract long cnt();
 

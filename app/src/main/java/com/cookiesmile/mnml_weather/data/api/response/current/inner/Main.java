@@ -16,10 +16,10 @@ public abstract class Main {
   public abstract double temp();
 
   @Json(name = "pressure")
-  public abstract long pressure();
+  public abstract double pressure();
 
   @Json(name = "humidity")
-  public abstract long humidity();
+  public abstract double humidity();
 
   @Json(name = "temp_min")
   public abstract double tempMin();

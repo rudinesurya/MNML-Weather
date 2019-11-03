@@ -18,9 +18,6 @@ public abstract class Sys {
   @Json(name = "id")
   public abstract long id();
 
-  @Json(name = "message")
-  public abstract double message();
-
   @Json(name = "country")
   public abstract String country();
 
