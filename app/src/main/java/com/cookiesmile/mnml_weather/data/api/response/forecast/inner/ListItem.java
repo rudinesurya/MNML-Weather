@@ -1,15 +1,17 @@
-package com.cookiesmile.mnml_weather.data.api.response.future.inner;
+package com.cookiesmile.mnml_weather.data.api.response.forecast.inner;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
-@AutoValue
-public abstract class List {
+import java.util.List;
 
-  public static JsonAdapter<List> jsonAdapter(Moshi moshi) {
-    return new AutoValue_List.MoshiJsonAdapter(moshi);
+@AutoValue
+public abstract class ListItem {
+
+  public static JsonAdapter<ListItem> jsonAdapter(Moshi moshi) {
+    return new AutoValue_ListItem.MoshiJsonAdapter(moshi);
   }
 
   @Json(name = "dt")
@@ -19,7 +21,7 @@ public abstract class List {
   public abstract Main main();
 
   @Json(name = "weather")
-  public abstract java.util.List<Weather> weather();
+  public abstract List<Weather> weather();
 
   @Json(name = "clouds")
   public abstract Clouds clouds();

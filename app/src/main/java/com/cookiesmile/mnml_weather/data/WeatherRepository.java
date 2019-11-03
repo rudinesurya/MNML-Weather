@@ -2,6 +2,7 @@ package com.cookiesmile.mnml_weather.data;
 
 import com.cookiesmile.mnml_weather.data.api.WeatherApiServiceRequester;
 import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,5 +27,9 @@ public class WeatherRepository {
 
   public Single<CurrentWeatherResponse> getCurrentWeather() {
     return weatherApiServiceRequesterProvider.get().getCurrentWeather().subscribeOn(scheduler);
+  }
+
+  public Single<ForecastWeatherResponse> getForecastWeather() {
+    return weatherApiServiceRequesterProvider.get().getForecastWeather().subscribeOn(scheduler);
   }
 }
