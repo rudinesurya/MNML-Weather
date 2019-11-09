@@ -3,7 +3,7 @@ package com.cookiesmile.mnml_weather.main;
 import com.bluelinelabs.conductor.Controller;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseActivity;
-import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherController;
+import com.cookiesmile.mnml_weather.screen.main.MainController;
 
 public class MainActivity extends BaseActivity {
 
@@ -14,6 +14,6 @@ public class MainActivity extends BaseActivity {
 
   @Override
   protected Controller initialScreen() {
-    return new CurrentWeatherController();
+    return new MainController();
   }
 }
