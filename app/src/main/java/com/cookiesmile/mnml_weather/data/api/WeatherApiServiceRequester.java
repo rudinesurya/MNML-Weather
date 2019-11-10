@@ -1,6 +1,7 @@
 package com.cookiesmile.mnml_weather.data.api;
 
 import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
 
 import javax.inject.Inject;
 
@@ -17,5 +18,9 @@ public class WeatherApiServiceRequester {
 
   public Single<CurrentWeatherResponse> getCurrentWeather() {
     return service.getCurrentWeather();
+  }
+
+  public Single<ForecastWeatherResponse> getForecastWeather() {
+    return service.getForecastWeather();
   }
 }

@@ -1,4 +1,4 @@
-package com.cookiesmile.mnml_weather.data.api.response.current.inner;
+package com.cookiesmile.mnml_weather.data.api.response.forecast.inner;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
