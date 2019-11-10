@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/tv_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="date" />
+
+    <TextView
+      android:id="@+id/tv_temperature"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="14" />
+
+    <TextView
+      android:id="@+id/tv_condition"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Cloudy" />
+
+    <ImageView
+      android:id="@+id/icon"
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:src="@drawable/ic_settings" />
+
+  </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
