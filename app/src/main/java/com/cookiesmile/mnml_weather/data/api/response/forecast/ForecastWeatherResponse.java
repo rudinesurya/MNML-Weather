@@ -27,5 +27,4 @@ public abstract class ForecastWeatherResponse {
 
   @Json(name = "city")
   public abstract City city();
-
 }

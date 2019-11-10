@@ -56,9 +56,11 @@ public class CurrentWeatherController extends BaseController {
 
           errorText.setVisibility(loading ? View.GONE : errorText.getVisibility());
         }),
+
         viewModel.result()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::PopulateWeatherInfo),
+
         viewModel.error()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(errorRes -> {
