@@ -85,7 +85,7 @@ public class MyListAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     void bind(ForecastWeatherItem weather) {
-      dateText.setText(weather.timestamp() + "");
+      dateText.setText(weather.date());
       double temp = KelvinToCelsius(weather.temp_k());
       String tempString = String.format("%.1f\u00B0c", temp);
       temperatureText.setText(tempString);

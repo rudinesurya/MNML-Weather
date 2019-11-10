@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseController;
 import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.forecast.inner.ListItem;
 import com.cookiesmile.mnml_weather.data.model.ForecastWeatherItem;
 import com.cookiesmile.mnml_weather.screen.forecast.utils.MyListAdapter;
 
@@ -78,10 +79,25 @@ public class ForecastWeatherController extends BaseController {
 
   private void PopulateRecyclerView(ForecastWeatherResponse forecastWeatherResponse) {
 
-    List<ForecastWeatherItem> dummy = new ArrayList<>();
-    dummy.add(ForecastWeatherItem.create(0, 123, 280, "Rainy", "01n"));
-    dummy.add(ForecastWeatherItem.create(1, 143, 290, "Rainy", "01n"));
+    List<ForecastWeatherItem> data = new ArrayList<>();
 
-    ((MyListAdapter) recyclerView.getAdapter()).setData(dummy);
+    int count = forecastWeatherResponse.list().size();
+    for (int i = 0; i < count; ++i) {
+      ListItem item = forecastWeatherResponse.list().get(i);
+      String date = item.dtTxt();
+      double temp_k = item.main().temp();
+      String condition = item.weather().get(0).main();
+      String icon = item.weather().get(0).icon();
+
+      data.add(ForecastWeatherItem.builder()
+          .id(i)
+          .date(date)
+          .temp_k(temp_k)
+          .condition(condition)
+          .icon(icon)
+          .build());
+    }
+
+    ((MyListAdapter) recyclerView.getAdapter()).setData(data);
   }
 }
