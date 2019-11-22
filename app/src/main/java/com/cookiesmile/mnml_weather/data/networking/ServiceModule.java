@@ -1,6 +1,5 @@
 package com.cookiesmile.mnml_weather.data.networking;
 
-
 import com.cookiesmile.mnml_weather.data.utils.AdapterFactory;
 import com.squareup.moshi.Moshi;
 
