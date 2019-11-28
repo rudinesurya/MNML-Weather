@@ -1,13 +1,18 @@
 package com.cookiesmile.mnml_weather.screen.current;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener;
 
 import com.bumptech.glide.Glide;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseController;
 import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.navigation.ScreenNavigation;
 
 import javax.inject.Inject;
 
@@ -15,13 +20,17 @@ import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-public class CurrentWeatherController extends BaseController {
+public class CurrentWeatherController extends BaseController implements OnMenuItemClickListener {
 
   @Inject
   CurrentWeatherViewModel viewModel;
   @Inject
   CurrentWeatherPresenter presenter;
+  @Inject
+  ScreenNavigation screenNavigation;
 
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
   @BindView(R.id.loading_indicator)
   View loadingView;
   @BindView(R.id.tv_error)
@@ -38,6 +47,13 @@ public class CurrentWeatherController extends BaseController {
   @Override
   protected int layoutRes() {
     return R.layout.screen_current_weather;
+  }
+
+  @Override
+  protected void onViewBound(View view) {
+    toolbar.setTitle("Current Weather");
+    toolbar.inflateMenu(R.menu.main_menu);
+    toolbar.setOnMenuItemClickListener(this);
   }
 
   @Override
@@ -74,6 +90,20 @@ public class CurrentWeatherController extends BaseController {
           }
         })
     };
+  }
+
+  @Override
+  public boolean onMenuItemClick(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.forecast:
+        screenNavigation.goToForecast(0);
+        return true;
+
+      case R.id.settings:
+        screenNavigation.goToSettings();
+        return true;
+    }
+    return false;
   }
 
   private void HideWeatherInfo() {

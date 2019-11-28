@@ -1,16 +1,20 @@
 package com.cookiesmile.mnml_weather.screen.forecast;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bluelinelabs.conductor.Controller;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseController;
 import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
 import com.cookiesmile.mnml_weather.data.api.response.forecast.inner.ListItem;
 import com.cookiesmile.mnml_weather.data.model.ForecastWeatherItem;
+import com.cookiesmile.mnml_weather.navigation.ScreenNavigation;
 import com.cookiesmile.mnml_weather.screen.forecast.utils.MyListAdapter;
 
 import java.util.ArrayList;
@@ -24,17 +28,33 @@ import io.reactivex.disposables.Disposable;
 
 public class ForecastWeatherController extends BaseController {
 
+  static final String CITY_ID_KEY = "city_id";
+
   @Inject
   ForecastWeatherViewModel viewModel;
   @Inject
   ForecastWeatherPresenter presenter;
+  @Inject
+  ScreenNavigation screenNavigation;
 
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
   @BindView(R.id.loading_indicator)
   View loadingView;
   @BindView(R.id.tv_error)
   TextView errorText;
   @BindView(R.id.recycler_view)
   RecyclerView recyclerView;
+
+  public ForecastWeatherController(Bundle bundle) {
+    super(bundle);
+  }
+
+  public static Controller newInstance(long id) {
+    Bundle bundle = new Bundle();
+    bundle.putLong(CITY_ID_KEY, id);
+    return new ForecastWeatherController(bundle);
+  }
 
   @Override
   protected int layoutRes() {
@@ -43,6 +63,9 @@ public class ForecastWeatherController extends BaseController {
 
   @Override
   protected void onViewBound(View view) {
+    toolbar.setNavigationIcon(R.drawable.ic_back);
+    toolbar.setNavigationOnClickListener(v -> screenNavigation.pop());
+
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(new MyListAdapter());
   }

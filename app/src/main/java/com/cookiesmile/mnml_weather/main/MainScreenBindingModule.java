@@ -6,8 +6,8 @@ import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherComponent;
 import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherController;
 import com.cookiesmile.mnml_weather.screen.forecast.ForecastWeatherComponent;
 import com.cookiesmile.mnml_weather.screen.forecast.ForecastWeatherController;
-import com.cookiesmile.mnml_weather.screen.main.MainController;
-import com.cookiesmile.mnml_weather.screen.main.MainControllerComponent;
+import com.cookiesmile.mnml_weather.screen.settings.SettingsComponent;
+import com.cookiesmile.mnml_weather.screen.settings.SettingsController;
 
 import dagger.Binds;
 import dagger.Module;
@@ -15,17 +15,11 @@ import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 
 @Module(subcomponents = {
-    MainControllerComponent.class,
     CurrentWeatherComponent.class,
     ForecastWeatherComponent.class,
+    SettingsController.class,
 })
 abstract class MainScreenBindingModule {
-
-  @Binds
-  @IntoMap
-  @ControllerKey(MainController.class)
-  abstract AndroidInjector.Factory<? extends Controller> bindMainControllerInjector(
-      MainControllerComponent.Builder builder);
 
   @Binds
   @IntoMap
@@ -38,4 +32,10 @@ abstract class MainScreenBindingModule {
   @ControllerKey(ForecastWeatherController.class)
   abstract AndroidInjector.Factory<? extends Controller> bindForecastWeatherInjector(
       ForecastWeatherComponent.Builder builder);
+
+  @Binds
+  @IntoMap
+  @ControllerKey(SettingsController.class)
+  abstract AndroidInjector.Factory<? extends Controller> bindSettingsInjector(
+      SettingsComponent.Builder builder);
 }
