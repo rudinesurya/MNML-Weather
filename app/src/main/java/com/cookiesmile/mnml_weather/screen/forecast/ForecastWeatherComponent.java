@@ -17,11 +17,11 @@ public interface ForecastWeatherComponent extends
   abstract class Builder extends AndroidInjector.Builder<ForecastWeatherController> {
 
     @BindsInstance
-    public abstract void bindCityName(@Named("city_id") long id);
+    public abstract void bindCityId(@Named("city_id") long id);
 
     @Override
     public void seedInstance(ForecastWeatherController instance) {
-      bindCityName(instance.getArgs().getLong(ForecastWeatherController.CITY_ID_KEY));
+      bindCityId(instance.getArgs().getLong(ForecastWeatherController.CITY_ID_KEY));
     }
   }
 }

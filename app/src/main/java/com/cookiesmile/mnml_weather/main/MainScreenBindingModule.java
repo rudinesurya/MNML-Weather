@@ -17,7 +17,7 @@ import dagger.multibindings.IntoMap;
 @Module(subcomponents = {
     CurrentWeatherComponent.class,
     ForecastWeatherComponent.class,
-    SettingsController.class,
+    SettingsComponent.class,
 })
 abstract class MainScreenBindingModule {
 

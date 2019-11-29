@@ -25,11 +25,11 @@ public class WeatherRepository {
     this.scheduler = scheduler;
   }
 
-  public Single<CurrentWeatherResponse> getCurrentWeather() {
-    return serviceProvider.get().getCurrentWeather().subscribeOn(scheduler);
+  public Single<CurrentWeatherResponse> getCurrentWeather(String cityName) {
+    return serviceProvider.get().getCurrentWeather(cityName).subscribeOn(scheduler);
   }
 
-  public Single<ForecastWeatherResponse> getForecastWeather() {
-    return serviceProvider.get().getForecastWeather().subscribeOn(scheduler);
+  public Single<ForecastWeatherResponse> getForecastWeather(long id) {
+    return serviceProvider.get().getForecastWeather(id).subscribeOn(scheduler);
   }
 }

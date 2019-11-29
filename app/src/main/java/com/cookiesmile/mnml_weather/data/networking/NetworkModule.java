@@ -17,6 +17,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.Call;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,6 +29,7 @@ import timber.log.Timber;
 @Module
 abstract class NetworkModule {
 
+  static final String API_KEY = "ac9835cb622906b6984abff688c81034";
   static final String HEADER_CACHE_CONTROL = "Cache-Control";
   static final String HEADER_PRAGMA = "Pragma";
 
@@ -48,10 +50,12 @@ abstract class NetworkModule {
   @Singleton
   static Call.Factory provideOkHttp(Cache cache,
       HttpLoggingInterceptor httpLoggingInterceptor,
+      @Named("request_interceptor") Interceptor requestInterceptor,
       @Named("offline_interceptor") Interceptor offlineInterceptor,
       @Named("network_interceptor") Interceptor networkInterceptor) {
     return new OkHttpClient.Builder()
         .cache(cache)
+        .addInterceptor(requestInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .addNetworkInterceptor(networkInterceptor) // only intercepts when network is available
         .addInterceptor(offlineInterceptor)
@@ -71,6 +75,24 @@ abstract class NetworkModule {
         new HttpLoggingInterceptor(message -> Timber.d("http log: " + message));
     httpLoggingInterceptor.level(Level.BASIC);
     return httpLoggingInterceptor;
+  }
+
+  @Provides
+  @Named("request_interceptor")
+  @Singleton
+  static Interceptor provideRequestInterceptor() {
+    return chain -> {
+      HttpUrl url = chain.request().url()
+          .newBuilder()
+          .addQueryParameter("appid", API_KEY)
+          .build();
+
+      Request request = chain.request()
+          .newBuilder()
+          .url(url).build();
+
+      return chain.proceed(request);
+    };
   }
 
   @Provides

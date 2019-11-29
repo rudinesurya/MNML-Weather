@@ -1,12 +1,10 @@
 package com.cookiesmile.mnml_weather.screen.current;
 
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener;
 
 import com.bumptech.glide.Glide;
 import com.cookiesmile.mnml_weather.R;
@@ -20,7 +18,7 @@ import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-public class CurrentWeatherController extends BaseController implements OnMenuItemClickListener {
+public class CurrentWeatherController extends BaseController {
 
   @Inject
   CurrentWeatherViewModel viewModel;
@@ -53,7 +51,7 @@ public class CurrentWeatherController extends BaseController implements OnMenuIt
   protected void onViewBound(View view) {
     toolbar.setTitle("Current Weather");
     toolbar.inflateMenu(R.menu.main_menu);
-    toolbar.setOnMenuItemClickListener(this);
+    toolbar.setOnMenuItemClickListener(presenter);
   }
 
   @Override
@@ -90,20 +88,6 @@ public class CurrentWeatherController extends BaseController implements OnMenuIt
           }
         })
     };
-  }
-
-  @Override
-  public boolean onMenuItemClick(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.forecast:
-        screenNavigation.goToForecast(0);
-        return true;
-
-      case R.id.settings:
-        screenNavigation.goToSettings();
-        return true;
-    }
-    return false;
   }
 
   private void HideWeatherInfo() {

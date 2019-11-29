@@ -5,12 +5,13 @@ import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherRe
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface WeatherApiService {
 
-  @GET("weather?q=London,uk&appid=ac9835cb622906b6984abff688c81034")
-  Single<CurrentWeatherResponse> getCurrentWeather();
+  @GET("weather")
+  Single<CurrentWeatherResponse> getCurrentWeather(@Query("q") String cityName);
 
-  @GET("forecast?q=London,uk&appid=ac9835cb622906b6984abff688c81034")
-  Single<ForecastWeatherResponse> getForecastWeather();
+  @GET("forecast")
+  Single<ForecastWeatherResponse> getForecastWeather(@Query("id") long id);
 }
