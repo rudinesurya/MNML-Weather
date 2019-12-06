@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cookiesmile.mnml_weather.R;
-import com.cookiesmile.mnml_weather.data.model.ForecastWeatherItem;
+import com.cookiesmile.mnml_weather.data.model.ForecastWeather;
 import com.cookiesmile.mnml_weather.screen.forecast.utils.MyListAdapter.ViewHolder;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class MyListAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-  private final List<ForecastWeatherItem> data = new ArrayList<>();
+  private final List<ForecastWeather> data = new ArrayList<>();
 
   public MyListAdapter() {
     setHasStableIds(true);
@@ -50,10 +50,10 @@ public class MyListAdapter extends RecyclerView.Adapter<ViewHolder> {
 
   @Override
   public long getItemId(int position) {
-    return data.get(position).id();
+    return data.get(position).getId();
   }
 
-  public void setData(List<ForecastWeatherItem> newData) {
+  public void setData(List<ForecastWeather> newData) {
     if (newData != null) {
       DiffUtil.DiffResult diffResult = DiffUtil
           .calculateDiff(new MyDiffCallback(data, newData));
@@ -84,15 +84,15 @@ public class MyListAdapter extends RecyclerView.Adapter<ViewHolder> {
       ButterKnife.bind(this, itemView);
     }
 
-    void bind(ForecastWeatherItem weather) {
-      dateText.setText(weather.date());
-      double temp = KelvinToCelsius(weather.temp_k());
+    void bind(ForecastWeather weather) {
+      dateText.setText(weather.getDate());
+      double temp = KelvinToCelsius(weather.getTemp());
       String tempString = String.format("%.1f\u00B0c", temp);
       temperatureText.setText(tempString);
-      conditionText.setText(weather.condition());
+      conditionText.setText(weather.getCondition());
 
       String iconUrl =
-          "https://openweathermap.org/img/wn/" + weather.icon() + "@2x.png";
+          "https://openweathermap.org/img/wn/" + weather.getIcon() + "@2x.png";
       Glide.with(context).load(iconUrl).into(icon);
     }
 

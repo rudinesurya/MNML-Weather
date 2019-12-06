@@ -1,8 +1,5 @@
 package com.cookiesmile.mnml_weather.data.networking;
 
-import com.cookiesmile.mnml_weather.data.utils.AdapterFactory;
-import com.squareup.moshi.Moshi;
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -18,19 +15,11 @@ public abstract class ServiceModule {
 
   @Provides
   @Singleton
-  static Moshi provideMoshi() {
-    return new Moshi.Builder()
-        .add(AdapterFactory.create())
-        .build();
-  }
-
-  @Provides
-  @Singleton
-  static Retrofit provideRetrofit(Moshi moshi, Call.Factory callFactory,
+  static Retrofit provideRetrofit(Call.Factory callFactory,
       @Named("base_url") String baseUrl) {
     return new Retrofit.Builder()
         .callFactory(callFactory)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .baseUrl(baseUrl)
         .build();

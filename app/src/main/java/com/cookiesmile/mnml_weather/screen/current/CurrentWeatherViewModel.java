@@ -1,7 +1,7 @@
 package com.cookiesmile.mnml_weather.screen.current;
 
 import com.cookiesmile.mnml_weather.R;
-import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.CurrentWeatherResponse;
 import com.cookiesmile.mnml_weather.di.ScreenScope;
 import com.jakewharton.rxrelay2.BehaviorRelay;
 

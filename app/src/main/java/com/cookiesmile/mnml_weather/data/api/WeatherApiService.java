@@ -1,7 +1,7 @@
 package com.cookiesmile.mnml_weather.data.api;
 
-import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
-import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.ForecastWeatherResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

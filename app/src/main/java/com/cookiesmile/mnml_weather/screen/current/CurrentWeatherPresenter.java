@@ -34,7 +34,7 @@ public class CurrentWeatherPresenter implements OnMenuItemClickListener {
         .doOnSubscribe(__ -> viewModel.loadingUpdated().accept(true))
         .doOnEvent((d, t) -> viewModel.loadingUpdated().accept(false))
         .subscribe(result -> {
-          cityId = result.id();
+          cityId = result.getId();
           Timber.d("city id = " + cityId);
           viewModel.resultUpdated().accept(result);
         }, viewModel.onError());

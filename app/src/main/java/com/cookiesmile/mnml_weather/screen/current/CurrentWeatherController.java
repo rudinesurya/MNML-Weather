@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseController;
-import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.CurrentWeatherResponse;
 import com.cookiesmile.mnml_weather.navigation.ScreenNavigation;
 
 import javax.inject.Inject;
@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 public class CurrentWeatherController extends BaseController {
 
@@ -105,15 +106,17 @@ public class CurrentWeatherController extends BaseController {
   }
 
   private void PopulateWeatherInfo(CurrentWeatherResponse weather) {
+    Timber.d(weather.toString());
+
     String iconUrl =
-        "https://openweathermap.org/img/wn/" + weather.weather().get(0).icon() + "@2x.png";
+        "https://openweathermap.org/img/wn/" + weather.getWeather().get(0).getIcon() + "@2x.png";
     Glide.with(this.getApplicationContext()).load(iconUrl).into(icon);
 
-    cityText.setText(weather.name());
-    double temp = KelvinToCelsius(weather.main().temp());
+    cityText.setText(weather.getName());
+    double temp = KelvinToCelsius(weather.getMain().getTemp());
     String tempString = String.format("%.1f\u00B0c", temp);
     temperatureText.setText(tempString);
-    descriptionText.setText(weather.weather().get(0).description());
+    descriptionText.setText(weather.getWeather().get(0).getDescription());
   }
 
   private double KelvinToCelsius(double kelvin) {

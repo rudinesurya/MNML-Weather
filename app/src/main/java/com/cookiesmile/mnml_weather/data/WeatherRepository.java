@@ -1,8 +1,8 @@
 package com.cookiesmile.mnml_weather.data;
 
 import com.cookiesmile.mnml_weather.data.api.WeatherApiService;
-import com.cookiesmile.mnml_weather.data.api.response.current.CurrentWeatherResponse;
-import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.CurrentWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.ForecastWeatherResponse;
 
 import javax.inject.Inject;
 import javax.inject.Named;

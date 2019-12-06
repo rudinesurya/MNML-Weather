@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bluelinelabs.conductor.Controller;
 import com.cookiesmile.mnml_weather.R;
 import com.cookiesmile.mnml_weather.base.BaseController;
-import com.cookiesmile.mnml_weather.data.api.response.forecast.ForecastWeatherResponse;
-import com.cookiesmile.mnml_weather.data.api.response.forecast.inner.ListItem;
-import com.cookiesmile.mnml_weather.data.model.ForecastWeatherItem;
+import com.cookiesmile.mnml_weather.data.api.response.ForecastWeatherResponse;
+import com.cookiesmile.mnml_weather.data.api.response.ForecastWeatherResponse.ListItem;
+import com.cookiesmile.mnml_weather.data.model.ForecastWeather;
 import com.cookiesmile.mnml_weather.navigation.ScreenNavigation;
 import com.cookiesmile.mnml_weather.screen.forecast.utils.MyListAdapter;
 
@@ -102,23 +102,19 @@ public class ForecastWeatherController extends BaseController {
 
   private void PopulateRecyclerView(ForecastWeatherResponse forecastWeatherResponse) {
 
-    List<ForecastWeatherItem> data = new ArrayList<>();
+    List<ForecastWeather> data = new ArrayList<>();
 
-    int count = forecastWeatherResponse.list().size();
+    int count = forecastWeatherResponse.getList().size();
     for (int i = 0; i < count; ++i) {
-      ListItem item = forecastWeatherResponse.list().get(i);
-      String date = item.dtTxt();
-      double temp_k = item.main().temp();
-      String condition = item.weather().get(0).main();
-      String icon = item.weather().get(0).icon();
+      ListItem item = forecastWeatherResponse.getList().get(i);
+      String date = item.getDtTxt();
+      double temp_k = item.getMain().getTemp();
+      String condition = item.getWeather().get(0).getMain();
+      String icon = item.getWeather().get(0).getIcon();
 
-      data.add(ForecastWeatherItem.builder()
-          .id(i)
-          .date(date)
-          .temp_k(temp_k)
-          .condition(condition)
-          .icon(icon)
-          .build());
+      data.add(new ForecastWeather(
+          i, date, temp_k, condition, icon
+      ));
     }
 
     ((MyListAdapter) recyclerView.getAdapter()).setData(data);
