@@ -1,4 +1,9 @@
 <resources>
   <string name="app_name">MNML-Weather</string>
   <string name="api_error_fetch_weather">Error fetching weather data</string>
+  <string name="sample_temperature">14°c</string>
+  <string name="sample_city">Dublin</string>
+  <string name="sample_time_string">2019-11-03 21:00:00</string>
+  <string name="sample_condition">Cloudy</string>
+  <string name="api_error_fetch_city_list">Error fetching city list</string>
 </resources>
