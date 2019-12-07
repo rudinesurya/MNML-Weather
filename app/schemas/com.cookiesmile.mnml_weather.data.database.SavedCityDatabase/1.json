@@ -2,28 +2,22 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "db398c6e876f17f577bd9f9e7b65c473",
+    "identityHash": "21a9a00e19cbfd522fd253935c15242e",
     "entities": [
       {
         "tableName": "SavedCity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `cityName` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`city` TEXT NOT NULL, PRIMARY KEY(`city`))",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "cityName",
-            "columnName": "cityName",
+            "fieldPath": "city",
+            "columnName": "city",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "city"
           ],
           "autoGenerate": false
         },
@@ -34,7 +28,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'db398c6e876f17f577bd9f9e7b65c473')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '21a9a00e19cbfd522fd253935c15242e')"
     ]
   }
 }

@@ -2,6 +2,8 @@ package com.cookiesmile.mnml_weather.main;
 
 import com.bluelinelabs.conductor.Controller;
 import com.cookiesmile.mnml_weather.di.ControllerKey;
+import com.cookiesmile.mnml_weather.screen.city_list.CityListComponent;
+import com.cookiesmile.mnml_weather.screen.city_list.CityListController;
 import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherComponent;
 import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherController;
 import com.cookiesmile.mnml_weather.screen.forecast.ForecastWeatherComponent;
@@ -17,6 +19,7 @@ import dagger.multibindings.IntoMap;
 @Module(subcomponents = {
     CurrentWeatherComponent.class,
     ForecastWeatherComponent.class,
+    CityListComponent.class,
     SettingsComponent.class,
 })
 abstract class MainScreenBindingModule {
@@ -32,6 +35,12 @@ abstract class MainScreenBindingModule {
   @ControllerKey(ForecastWeatherController.class)
   abstract AndroidInjector.Factory<? extends Controller> bindForecastWeatherInjector(
       ForecastWeatherComponent.Builder builder);
+
+  @Binds
+  @IntoMap
+  @ControllerKey(CityListController.class)
+  abstract AndroidInjector.Factory<? extends Controller> bindCityListInjector(
+      CityListComponent.Builder builder);
 
   @Binds
   @IntoMap

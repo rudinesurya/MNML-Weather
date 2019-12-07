@@ -10,13 +10,13 @@ import com.cookiesmile.mnml_weather.data.model.SavedCity;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 @Dao
 public interface SavedCityDao {
 
   @Query("select * from savedcity")
-  Flowable<List<SavedCity>> getAllSavedCity();
+  Single<List<SavedCity>> getAllSavedCity();
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   void addCity(SavedCity item);

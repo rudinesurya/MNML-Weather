@@ -5,6 +5,5 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SavedCity(
-        @PrimaryKey var id: Long,
-        var cityName: String
+        @PrimaryKey var city: String
 )

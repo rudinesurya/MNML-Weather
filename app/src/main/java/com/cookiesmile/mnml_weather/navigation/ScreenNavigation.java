@@ -5,6 +5,7 @@ import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.cookiesmile.mnml_weather.di.ActivityScope;
+import com.cookiesmile.mnml_weather.screen.city_list.CityListController;
 import com.cookiesmile.mnml_weather.screen.forecast.ForecastWeatherController;
 import com.cookiesmile.mnml_weather.screen.settings.SettingsController;
 
@@ -35,6 +36,15 @@ public class ScreenNavigation {
     if (router != null) {
       router.pushController(RouterTransaction.with(
           ForecastWeatherController.newInstance(id))
+          .pushChangeHandler(new FadeChangeHandler())
+          .popChangeHandler(new FadeChangeHandler()));
+    }
+  }
+
+  public void goToSavedCity() {
+    if (router != null) {
+      router.pushController(RouterTransaction.with(
+          new CityListController())
           .pushChangeHandler(new FadeChangeHandler())
           .popChangeHandler(new FadeChangeHandler()));
     }
