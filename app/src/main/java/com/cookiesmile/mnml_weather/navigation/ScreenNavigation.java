@@ -6,6 +6,7 @@ import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.cookiesmile.mnml_weather.di.ActivityScope;
 import com.cookiesmile.mnml_weather.screen.city_list.CityListController;
+import com.cookiesmile.mnml_weather.screen.current.CurrentWeatherController;
 import com.cookiesmile.mnml_weather.screen.forecast.ForecastWeatherController;
 import com.cookiesmile.mnml_weather.screen.settings.SettingsController;
 
@@ -30,6 +31,15 @@ public class ScreenNavigation {
 
   public boolean pop() {
     return router != null && router.handleBack();
+  }
+
+  public void goToCurrent() {
+    if (router != null) {
+      router.setRoot(RouterTransaction.with(
+          new CurrentWeatherController())
+          .pushChangeHandler(new FadeChangeHandler())
+          .popChangeHandler(new FadeChangeHandler()));
+    }
   }
 
   public void goToForecast(long id) {

@@ -1,5 +1,7 @@
 package com.cookiesmile.mnml_weather.screen.current;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener;
@@ -22,10 +24,11 @@ public class CurrentWeatherPresenter implements OnMenuItemClickListener {
   private final ScreenNavigation screenNavigation;
 
   private long cityId = -1;
-  private String cityName = "London, UK";
+  private String cityName;
 
   @Inject
-  CurrentWeatherPresenter(CurrentWeatherViewModel viewModel, WeatherRepository repository,
+  CurrentWeatherPresenter(Context context, CurrentWeatherViewModel viewModel,
+      WeatherRepository repository,
       ScreenNavigation screenNavigation) {
     this.viewModel = viewModel;
     this.repository = repository;
@@ -33,6 +36,9 @@ public class CurrentWeatherPresenter implements OnMenuItemClickListener {
 
     repository.addCity(new SavedCity("London, UK"));
     repository.addCity(new SavedCity("Dublin, IE"));
+
+    SharedPreferences sharedPref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+    cityName = sharedPref.getString("selected_city", "London, UK");
 
     repository.getCurrentWeather(cityName)
         .doOnSubscribe(__ -> viewModel.loadingUpdated().accept(true))
