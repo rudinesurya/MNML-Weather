@@ -53,6 +53,12 @@ public class WeatherRepository {
     });
   }
 
+  public void deleteCity(SavedCity city) {
+    runDbAction(() -> {
+      savedCityDaoProvider.get().deleteCity(city);
+    });
+  }
+
   private void runDbAction(Action action) {
     Completable.fromAction(action)
         .subscribeOn(scheduler)
